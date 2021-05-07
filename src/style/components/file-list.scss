@@ -1,0 +1,21 @@
+.file-list {
+  overflow: auto;
+  height: 500px;
+  scroll-behavior: smooth;
+  margin-bottom: 10px;
+
+  .ant-btn > span {
+    font-family: DolceVita;
+    font-size: 18px;
+    color: white;
+    transition: color 0.1s linear;
+  }
+
+  .ant-btn.active > span {
+    color: $link;
+  }
+
+  .ant-list-item-meta-avatar {
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,37 @@
+// add common classes used accross the project here
+.site-container {
+  padding: 24px;
+  background-color: #404040;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.is-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.button-container {
+  button:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+html,
+body {
+  background-color: #202020;
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100%;
+}
+
+.dolce-vita {
+  * {
+    font-family: 'DolceVita';
+  }
+}

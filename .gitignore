@@ -1,0 +1,11 @@
+node_modules/
+yarn-error.log
+server_mock/node_modules/
+server_mock/lib/
+server_mock/.env
+backend/dist
+dist/
+.env
+.env.development
+.DS_Store
+*.projectile

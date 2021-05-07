@@ -1,0 +1,14 @@
+// add your overrides here to whatever framework you're working with
+.modal {
+  // bad fsp z-index on it's elements, have to
+  // compensate here
+  z-index: 2147483648;
+}
+.fsp-picker--inline {
+  display: flex !important;
+  min-height: 450px !important;
+
+  .fsp-picker-holder {
+    height: auto !important;
+  }
+}

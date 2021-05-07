@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": [ "src/*" ]
+    },
+    "esModuleInterop": true,
+    "types": ["gapi.auth2", "gapi.client.drive", "node"]
+  },
+  "include": [ "./src/**/*" ]
+}

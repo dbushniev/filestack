@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'DolceVita';
+  src: url('./fonts/Dolce Vita.ttf');
+}
+
+@import './colors.scss';
+@import '~bulma/bulma.sass';
+@import './overrides.scss';
+@import './common.scss';
+
+@import './components/file-list.scss';
+@import './components/success-modal.scss';
