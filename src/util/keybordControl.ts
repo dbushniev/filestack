@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const KEYS = {
   Enter: 'Enter',
   Backspace: 'Backspace',
@@ -6,7 +8,10 @@ const KEYS = {
 const BUTTONS = (key: string) => ({
   [key]: (): null => null,
   [KEYS.Enter]: () => document.querySelector<HTMLButtonElement>('.fsp-button.fsp-button--primary'),
-  [KEYS.Backspace]: () => document.querySelector<HTMLButtonElement>('.fsp-button.fsp-button--cancel')
+  [KEYS.Backspace]: () => _.first([
+    document.querySelector<HTMLButtonElement>('.fsp-button.fsp-button--cancel'),
+    document.querySelector<HTMLDivElement>('.fsp-summary__go-back'),
+  ].filter(Boolean)),
 }[key])()
 
 const keyboardControl = (e: KeyboardEvent) => {
