@@ -4,6 +4,7 @@
   // compensate here
   z-index: 2147483648;
 }
+
 .fsp-picker--inline {
   display: flex !important;
   min-height: 450px !important;
@@ -11,4 +12,8 @@
   .fsp-picker-holder {
     height: auto !important;
   }
+}
+
+.fsp-content-scroll {
+  overflow-y: auto !important;
 }
