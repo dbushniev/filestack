@@ -80,6 +80,7 @@ const FileDashboard = () => {
       }
       params.set('close', 't');
       window.location.hash = params.toString();
+      setShowModal(false);
     }
   };
 
