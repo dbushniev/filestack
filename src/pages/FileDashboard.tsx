@@ -61,6 +61,7 @@ const FileDashboard = () => {
               });
             }
             window.location.hash = params.toString();
+            setShowModal(true);
           }
         },
       });
@@ -71,7 +72,7 @@ const FileDashboard = () => {
 
   const handleLogout = async () => {
     if (client) {
-      await client.logout();
+      // await client.logout();
       const params = new URLSearchParams();
       if ((window as any).vuplex) {
         (window as any).vuplex.postMessage({
@@ -84,13 +85,15 @@ const FileDashboard = () => {
     }
   };
 
+  const handleCancel = () => setShowModal(false);
+
   return (
     <Columns className="file-dashboard">
       <Column isFullWidth className='p-unset'>
         <div id="filepicker"></div>
         <SuccessModal
           isActive={showModal}
-          onAccept={() => setShowModal(false)}
+          onAccept={handleCancel}
           onCancel={handleLogout}
           acceptText="Add Another File"
           cancelText="Done"
