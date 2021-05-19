@@ -85,7 +85,7 @@ const FileDashboard = () => {
 
   return (
     <Columns className="file-dashboard">
-      <Column isFullWidth>
+      <Column isFullWidth className='p-unset'>
         <div id="filepicker"></div>
         <SuccessModal
           isActive={showModal}

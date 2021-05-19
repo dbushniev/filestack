@@ -1,6 +1,6 @@
 // add common classes used accross the project here
 .site-container {
-  padding: 24px;
+  padding: unset;
   background-color: #404040;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,7 @@
 
 .file-dashboard {
   flex: 1;
+  margin: unset;
 }
 
 #filepicker {
@@ -29,6 +30,10 @@
   button:not(:first-child) {
     margin-left: 10px;
   }
+}
+
+.p-unset {
+  padding: unset;
 }
 
 html,
