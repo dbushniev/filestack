@@ -26,6 +26,23 @@ const FileDashboard = () => {
     })
   }
 
+  const handleLogout = async () => {
+    if (client) {
+      // await client.logout();
+      const params = new URLSearchParams();
+      if ((window as any).vuplex) {
+        (window as any).vuplex.postMessage({
+          type: 'closeWebApp',
+        });
+      }
+      params.set('close', 't');
+      window.location.hash = params.toString();
+      setShowModal(false);
+    }
+  };
+
+  const handleCancel = () => setShowModal(false);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const apiKey = params.get('apiKey');
@@ -36,30 +53,20 @@ const FileDashboard = () => {
 
   useEffect(() => {
     document.addEventListener('keydown', scrollControl);
-    return () => document.removeEventListener('keydown', scrollControl);
-  }, [])
-
-  useEffect(() => {
+    document.addEventListener('keydown', keyboardControl);
     document.addEventListener('click', handleButtonClick);
-    return () => document.removeEventListener('click', handleButtonClick)
-  }, [])
-
-  useEffect(() => {
     if ((window as any).vuplex) {
       addVuplexListener();
     } else {
       window.addEventListener('vuplexready', addVuplexListener);
     }
-
     return () => {
+      document.removeEventListener('keydown', scrollControl);
+      document.removeEventListener('keydown', keyboardControl);
+      document.removeEventListener('click', handleButtonClick);
       window.removeEventListener('vuplexready', addVuplexListener);
-    };
+    }
   }, []);
-
-  useEffect(() => {
-    document.addEventListener('keydown', keyboardControl);
-    return () => document.removeEventListener('keydown', keyboardControl);
-  }, [])
 
   useEffect(() => {
     if (client) {
@@ -90,23 +97,6 @@ const FileDashboard = () => {
       picker.open()
     }
   }, [client]);
-
-  const handleLogout = async () => {
-    if (client) {
-      // await client.logout();
-      const params = new URLSearchParams();
-      if ((window as any).vuplex) {
-        (window as any).vuplex.postMessage({
-          type: 'closeWebApp',
-        });
-      }
-      params.set('close', 't');
-      window.location.hash = params.toString();
-      setShowModal(false);
-    }
-  };
-
-  const handleCancel = () => setShowModal(false);
 
   return (
     <Columns className="file-dashboard">
