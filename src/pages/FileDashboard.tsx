@@ -7,11 +7,24 @@ import keyboardControl from '@app/util/keybordControl';
 import getElementParents from '@app/util/getElementParents';
 import { BUTTONS_CLASSNAMES } from '@app/config/buttons';
 import audioSound from '@app/util/audioSound';
+import scrollControl from '@app/util/scrollControl';
 
 const FileDashboard = () => {
   const [client, setClient] = useState<filestack.Client | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
+  const addVuplexListener = () => {
+    (window as any).vuplex.addEventListener('message', () => {
+      setShowModal(true);
+    });
+  };
+
+  const handleButtonClick = (e: MouseEvent) => {
+    const parents: HTMLElement[] =  getElementParents(e.target as HTMLElement);
+    parents.forEach((element) => {
+      if (BUTTONS_CLASSNAMES.some((className) => element.className.includes(className))) audioSound();
+    })
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -21,19 +34,14 @@ const FileDashboard = () => {
     }
   }, []);
 
-  const addVuplexListener = () => {
-    (window as any).vuplex.addEventListener('message', () => {
-      setShowModal(true);
-    });
-  };
+  useEffect(() => {
+    document.addEventListener('keydown', scrollControl);
+    return () => document.removeEventListener('keydown', scrollControl);
+  }, [])
 
   useEffect(() => {
-    document.addEventListener('click', (e) => {
-      const parents: HTMLElement[] =  getElementParents(e.target as HTMLElement);
-      parents.forEach((element) => {
-        if (BUTTONS_CLASSNAMES.some((className) => element.className.includes(className))) audioSound();
-      })
-    })
+    document.addEventListener('click', handleButtonClick);
+    return () => document.removeEventListener('click', handleButtonClick)
   }, [])
 
   useEffect(() => {
