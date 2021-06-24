@@ -2,15 +2,18 @@ import * as React from 'react';
 import { Column, Columns } from 'bloomer';
 import * as filestack from 'filestack-js';
 import SuccessModal from '@app/components/SuccessModal';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import keyboardControl from '@app/util/keybordControl';
+import getElementParents from '@app/util/getElementParents';
+import { BUTTONS_CLASSNAMES } from '@app/config/buttons';
+import audioSound from '@app/util/audioSound';
 
 const FileDashboard = () => {
-  const [client, setClient] = React.useState<filestack.Client | null>(null);
-  const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [client, setClient] = useState<filestack.Client | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const apiKey = params.get('apiKey');
     if (apiKey) {
@@ -24,7 +27,16 @@ const FileDashboard = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    document.addEventListener('click', (e) => {
+      const parents: HTMLElement[] =  getElementParents(e.target as HTMLElement);
+      parents.forEach((element) => {
+        if (BUTTONS_CLASSNAMES.some((className) => element.className.includes(className))) audioSound();
+      })
+    })
+  }, [])
+
+  useEffect(() => {
     if ((window as any).vuplex) {
       addVuplexListener();
     } else {
@@ -41,13 +53,14 @@ const FileDashboard = () => {
     return () => document.removeEventListener('keydown', keyboardControl);
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (client) {
       const picker = client.picker({
         accept: 'application/pdf',
         fromSources: ['googledrive', 'box', 'onedrive'],
         displayMode: filestack.PickerDisplayMode.inline,
         container: '#filepicker',
+        viewType: 'grid',
         onUploadDone: ({ filesUploaded }) => {
           if (filesUploaded.length) {
             const params = new URLSearchParams();
@@ -99,6 +112,7 @@ const FileDashboard = () => {
           cancelText="Done"
           message="Successfully added to My Files"
         />
+        <audio><source src="/public/click.mp3" type="audio/mpeg" /></audio>
       </Column>
     </Columns>
   );

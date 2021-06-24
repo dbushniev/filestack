@@ -15,6 +15,7 @@ const BUTTONS = (key: string) => ({
 }[key])()
 
 const keyboardControl = (e: KeyboardEvent) => {
+  e.stopPropagation();
   const btn = BUTTONS(e.key);
   if (btn) btn.click();
 };
