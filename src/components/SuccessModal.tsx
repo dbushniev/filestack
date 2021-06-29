@@ -9,7 +9,12 @@ import {
   Columns,
   Column,
   Title,
+  Media,
+  MediaContent,
+  Image,
 } from 'bloomer';
+
+import DriveLogo from '@app/assets/gdrive_logo.png';
 
 interface ModalProps {
   isActive: boolean;
@@ -27,6 +32,11 @@ const SuccessModal = (props: ModalProps) => {
       <ModalContent>
         <Card>
           <CardContent>
+            <Media>
+              <MediaContent style={{ justifyContent: 'center', display: 'flex' }}>
+                <img src={DriveLogo} className='success-modal-img' />
+              </MediaContent>
+            </Media>
             <Columns isMultiline>
               <Column className="is-full has-text-centered">
                 <Title isSize={5}>{props.message}</Title>

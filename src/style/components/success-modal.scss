@@ -1,4 +1,7 @@
 .success-modal {
+  &-img {
+    max-height: 100px;
+  }
   .button {
     padding-top: calc(1.5em - 1px);
     padding-bottom: calc(1.5em - 1px);

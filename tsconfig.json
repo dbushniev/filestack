@@ -16,5 +16,5 @@
     "esModuleInterop": true,
     "types": ["gapi.auth2", "gapi.client.drive", "node"]
   },
-  "include": [ "./src/**/*" ]
+  "include": [ "./src/**/*", "./*.d.ts" ]
 }
