@@ -8,6 +8,7 @@ import getElementParents from '@app/util/getElementParents';
 import { BUTTONS_CLASSNAMES } from '@app/config/buttons';
 import audioSound from '@app/util/audioSound';
 import scrollControl from '@app/util/scrollControl';
+import Click from '@app/assets/click.mp3';
 
 const FileDashboard = () => {
   const [client, setClient] = useState<filestack.Client | null>(null);
@@ -110,7 +111,7 @@ const FileDashboard = () => {
           cancelText="Done"
           message="Successfully added to My Files"
         />
-        <audio><source src="/public/click.mp3" type="audio/mpeg" /></audio>
+        <audio><source src={Click} type="audio/mpeg" /></audio>
       </Column>
     </Columns>
   );
