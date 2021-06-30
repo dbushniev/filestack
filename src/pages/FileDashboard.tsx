@@ -73,7 +73,7 @@ const FileDashboard = () => {
     if (client) {
       const picker = client.picker({
         accept: 'application/pdf',
-        fromSources: ['googledrive', 'box', 'onedrive'],
+        fromSources: ['googledrive'],
         displayMode: filestack.PickerDisplayMode.inline,
         container: '#filepicker',
         viewType: 'grid',
