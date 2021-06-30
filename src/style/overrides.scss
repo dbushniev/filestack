@@ -27,3 +27,7 @@
   background-size: contain;
   background-position: center;
 }
+
+.fsp-grid__cell:active {
+  background-color: #ccc !important;
+}
