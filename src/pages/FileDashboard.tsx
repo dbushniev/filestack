@@ -13,7 +13,6 @@ import Click from '@app/assets/click.mp3';
 const FileDashboard = () => {
   const [client, setClient] = useState<filestack.Client | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-
   const addVuplexListener = () => {
     (window as any).vuplex.addEventListener('message', () => {
       setShowModal(true);
@@ -77,6 +76,7 @@ const FileDashboard = () => {
         displayMode: filestack.PickerDisplayMode.inline,
         container: '#filepicker',
         viewType: 'grid',
+        maxSize: 1024**3,
         onUploadDone: ({ filesUploaded }) => {
           if (filesUploaded.length) {
             const params = new URLSearchParams();
