@@ -71,7 +71,7 @@ const FileDashboard = () => {
   useEffect(() => {
     if (client) {
       const picker = client.picker({
-        accept: 'application/pdf',
+        accept: ['application/pdf', 'video/mp4', 'video/x-msvideo'],
         fromSources: ['googledrive'],
         displayMode: filestack.PickerDisplayMode.inline,
         container: '#filepicker',
